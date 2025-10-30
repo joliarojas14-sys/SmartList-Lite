@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Message for You 💖</title>
+  <style>
+    /* Background Setup */
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top left, #ffe5ec, #ffc3a0);
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Floating Hearts Animation */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      font-size: 20px;
+      color: #ff4f81;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Message Card */
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 40px 30px;
+      border-radius: 25px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      width: 320px;
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      color: #ff4f81;
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      text-shadow: 0 0 8px rgba(255, 79, 129, 0.4);
+      transition: opacity 0.4s;
+    }
+
+    button {
+      background: linear-gradient(135deg, #ff4f81, #ff8fa3);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 79, 129, 0.3);
+    }
+
+    button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 15px rgba(255, 79, 129, 0.5);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="message">Hi love 💕</h1>
+    <button id="nextBtn">Next 💌</button>
+  </div>
+
+  <script>
+    // Sweet messages
+    const messages = [
+      "Hi love <3",
+      "ahem kanang kuan, pwede manaygon? bahalag 5 lang ihatag nimo pampalit lang bobot hehe",
+      "You're the reason behind my smiles hehe mwaahh",
+      "You're the only one I want pero usahay gusto pud nakong matug HAHAHA",
+      "Every moment with you feels like magic",
+      "I may not say it often, but I really appreciate you 💗",
+      "Pag naa ka ky okay ra ang tanan, perog wala ka ky okay ra gihapon pero kapoy sa lawas HAHAHA",
+      "You make my heart the happiest ",
+      "Forever thankful that I met you 😗",
+      "You’re my peace in this busy world 🌷",
+      "Nah uy ambot nganong nag ingani ko karon nisud ramag kalit sakong hunahuna HAHAHA",
+    ];
+
+    let index = 0;
+    const message = document.getElementById("message");
+    const nextBtn = document.getElementById("nextBtn");
+
+    // Change message on click
+    nextBtn.addEventListener("click", () => {
+      index = (index + 1) % messages.length;
+      message.style.opacity = 0;
+      setTimeout(() => {
+        message.textContent = messages[index];
+        message.style.opacity = 1;
+      }, 300);
+    });
+
+    // Floating hearts generator
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
